@@ -25,9 +25,9 @@ def process(file):
 
         white = np.percentile(gray, 99) # 筛选出来的白色区域
 
-        r = np.mean(img[gray>=white, 0])
-        g = np.mean(img[gray>=white, 1])
-        b = np.mean(img[gray>=white, 2])
+        r = np.mean(img[gray>white, 0])
+        g = np.mean(img[gray>white, 1])
+        b = np.mean(img[gray>white, 2])
 
         content = file+','+str(r)+','+str(g)+','+str(b)+'\n'
         
@@ -47,7 +47,8 @@ def process(file):
 
 def callback(content):
     with open('left.csv', 'a') as fw:
-        fw.write(content) # 回调锁住了，不需要快
+        if content: # 最后返回none
+            fw.write(content) # 回调锁住了，不需要快
 
 ####################
 # 多进程
