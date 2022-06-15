@@ -31,7 +31,7 @@ def process(file):
 
         content = file+','+str(r)+','+str(g)+','+str(b)
         with open('left.csv', 'a') as fw:
-            print(content, file=fw) # 尽可能快
+            fw.write(content) # 尽可能快
 
     except: # 数据库文件直接跳过
         pass
